@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import axios from "axios"
 import User from './User/User'
 
-
 const useStyles = makeStyles((theme) => ({
     toolbar: theme.toolbar,
     content: {
@@ -17,8 +16,6 @@ const useStyles = makeStyles((theme) => ({
         flexGrow: 1,
     }
 }));
-
-
 
 const Users = () => {
     const classes = useStyles();
@@ -33,8 +30,6 @@ const Users = () => {
     useEffect(() => {
         getUsers();
     }, [])
-
-
 
     return (
         <main className={classes.content}>

@@ -3,14 +3,31 @@ import { Card, CardMedia, CardContent, CardActions, Typography, IconButton } fro
 import DeleteIcon from '@mui/icons-material/Delete';
 import useStyles from './styles'
 import { Link } from "react-router-dom";
+import { getUser } from "../../../api/UserApı"
+import { useState, useEffect } from 'react';
 
-//props are coming from PRODUCTS to PRODUCT...
 
 
-//User=CHILD
+//Sildikten sonra sayfanın otomatik güncellemsi eklenecek ???
+
 
 const User = ({ user }) => {
     const classes = useStyles();
+
+
+    function deleteUser(id) {
+        fetch(`https://5fc9346b2af77700165ae514.mockapi.io/simpsons/${id}`, {
+            method: 'DELETE'
+        }).then((result) => {
+            result.json().then((resp) => {
+                console.warn(resp)
+
+            })
+
+        })
+    }
+
+
     return (
         <Card className={classes.root}>
             <CardMedia className={classes.media} image={user.avatar.split("/revision")[0]} title={user.name} />
@@ -27,7 +44,8 @@ const User = ({ user }) => {
                 {/*   <Typography variant="body2" color="textSecondary">{user.about}</Typography> */}
             </CardContent>
             <CardActions disableSpacing className={classes.cardActions}>
-                <IconButton aria-label="Delete">
+                <IconButton
+                    onClick={() => deleteUser(user.id)} aria-label="Delete">
                     <DeleteIcon />
                 </IconButton>
                 <Link

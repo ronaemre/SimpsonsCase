@@ -6,6 +6,7 @@ import Button from '@mui/material/Button';
 /* import { Fingerprint } from '@material-ui/icons';
 import IconButton from '@mui/material/IconButton'; */
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link } from "react-router-dom";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -47,6 +48,15 @@ export default function WebNavbar() {
                         />
                         <Button className={classes.searchButton} variant="contained">Search</Button>
                     </Form>
+                    <Link
+                        id="Add-character-button"
+                        to="/add"
+                        type="button"
+                        className="btn btn-md btn-danger"
+                        style={{ float: "right" }}
+                    >
+                        Add User
+                    </Link>
 
                 </Container>
             </Navbar>
