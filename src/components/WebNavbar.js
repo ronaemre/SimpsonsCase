@@ -31,7 +31,6 @@ const useStyles = makeStyles((theme) => ({
     }
 
 }));
-
 export default function WebNavbar() {
     const classes = useStyles();
     return (
@@ -46,21 +45,22 @@ export default function WebNavbar() {
                             placeholder="Search"
                             aria-label="Search"
                         />
+                        {/* //SearchBar aktif değil */}
                         <Button className={classes.searchButton} variant="contained">Search</Button>
                     </Form>
-                    <Link
-                        id="Add-character-button"
-                        to="/add"
-                        type="button"
-                        className="btn btn-md btn-danger"
-                        style={{ float: "right" }}
-                    >
-                        Add User
-                    </Link>
-
+                    <div data-testid="Add-user-button">
+                        <Link
+                            id="Add-character-button"
+                            to="/add"
+                            type="button"
+                            className="btn btn-md btn-danger"
+                            style={{ float: "right" }}
+                        >
+                            Add User
+                        </Link>
+                    </div>
                 </Container>
             </Navbar>
-
         </div>
     )
 }

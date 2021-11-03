@@ -5,47 +5,44 @@ import useStyles from './styles'
 import { Link } from "react-router-dom";
 import { getUser } from "../../../api/UserApı"
 import { useState, useEffect } from 'react';
+import { deleteUser } from '../../../api/UserApı'
+
 
 
 
 //Sildikten sonra sayfanın otomatik güncellemsi eklenecek ???
 
 
-const User = ({ user }) => {
+const User = ({ user, setUsersHandler }) => {
     const classes = useStyles();
 
 
-    function deleteUser(id) {
-        fetch(`https://5fc9346b2af77700165ae514.mockapi.io/simpsons/${id}`, {
-            method: 'DELETE'
-        }).then((result) => {
-            result.json().then((resp) => {
-                console.warn(resp)
-
-            })
-
-        })
+    async function deleteUserHandler(id) {
+        const response = await deleteUser(id)
+        setUsersHandler(response.data)
     }
 
 
     return (
         <Card className={classes.root}>
-            <CardMedia className={classes.media} image={user.avatar.split("/revision")[0]} title={user.name} />
+            <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}>
+                <img className={classes.media} src={user.avatar.split("/revision")[0]} title={user.name} />
+            </div>
             <CardContent>
                 <div className={classes.cardContent}>
                     <Typography variant="h5" gutterBottom>
                         {user.name}
                     </Typography>
-
                 </div>
-                {/*      <Typography variant="h5" >
-                    {user.job}
-                </Typography> */}
-                {/*   <Typography variant="body2" color="textSecondary">{user.about}</Typography> */}
             </CardContent>
-            <CardActions disableSpacing className={classes.cardActions}>
+            <CardActions disableSpacing className={classes.cardActions} >
                 <IconButton
-                    onClick={() => deleteUser(user.id)} aria-label="Delete">
+                    data-testid="delete"
+                    onClick={() => deleteUserHandler(user.id)} aria-label="Delete">
                     <DeleteIcon />
                 </IconButton>
                 <Link

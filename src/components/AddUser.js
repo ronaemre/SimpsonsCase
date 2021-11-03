@@ -11,7 +11,7 @@ const AddMovie = () => {
 
 
     async function addUser() {
-        console.log(name, job, image, about)
+        /*    console.log(name, job, image, about) */
         const formData = new FormData();
         formData.append('name', name);
         formData.append('job', job);
@@ -26,7 +26,7 @@ const AddMovie = () => {
         alert("Karakter Kaydedildi")
     }
     return (
-        <div className="container" data-testid="container">
+        <div className="container" style={{ backgroundColor: "pink", borderRadius: "20px", marginTop: "180px" }} data-testid="container">
             <div >
                 <input
                     className="form-control"
@@ -35,24 +35,24 @@ const AddMovie = () => {
                     placeholder="Fill The Form To Add A Simpsons.."
                     disabled
                 />
-                <div className="form-row" id="name">
-                    <div className="form-group col-md-10">
+                <div className="form-row">
+                    <div className="form-group col-md-10" data-testid="name">
                         <label htmlFor="inputName">Name</label>
                         <input type="text" className="form-control" name="name" onChange={(e) => setName(e.target.value)} />
                     </div>
-                    <div className="form-group col-md-2">
+                    <div className="form-group col-md-2" data-testid="job">
                         <label htmlFor="inputRating">Job</label>
                         <input type="text" className="form-control" name="rating" onChange={(e) => setJob(e.target.value)} />
                     </div>
                 </div>
                 <div className="form-row">
-                    <div className="form-group col-md-12">
+                    <div className="form-group col-md-12" data-testid="image">
                         <label htmlFor="inputImage">Image URL</label>
                         <input type="text" className="form-control" name="imageURL" onChange={(e) => setImage(e.target.value)} />
                     </div>
                 </div>
-                <div className="form-row">
-                    <div className="form-group col-md-12">
+                <div className="form-row" >
+                    <div className="form-group col-md-12" data-testid="about">
                         <label htmlFor="overviewTextarea">About</label>
                         <textarea
                             onChange={(e) => setAbout(e.target.value)}
@@ -68,8 +68,8 @@ const AddMovie = () => {
                     className="btn btn-danger btn-block"
                     value="Add User"
                 />
-            </div>
-        </div>
+            </div >
+        </div >
     );
 
 }
